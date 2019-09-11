@@ -26,10 +26,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import uk.co.senab.photoview.PhotoView;
-
 public class ShowPDFActivity extends AppCompatActivity {
-    PhotoView mContainer;
     private ParcelFileDescriptor parcelFileDescriptor;
     private PdfRenderer pdfRenderer;
     private PdfRenderer.Page mCurrentPage;
@@ -45,19 +42,11 @@ public class ShowPDFActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         mImageListRecycler = findViewById(R.id.imageListRecyclerView);
-//        mContainer = findViewById(R.id.container);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-//        showPage(0);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void openRenderer(final Context context) throws IOException {
-        // In this sample, we read a PDF from the assets directory.
-        FileLoader.with(this).load("http://www.pdf995.com/samples/pdf.pdf").fromDirectory("PDFFiles", FileLoader.DIR_CACHE)
+        FileLoader.with(this).load("http://www.almullaofficeautomationsolutions.com/OASV2/contract/323-46516contract.pdf").fromDirectory("PDFFiles", FileLoader.DIR_CACHE)
                 .asFile(new FileRequestListener<File>() {
                     @Override
                     public void onLoad(FileLoadRequest request, FileResponse<File> response) {
@@ -90,33 +79,6 @@ public class ShowPDFActivity extends AppCompatActivity {
         mImageListRecycler.setAdapter(imageListRecyclerAdapter);
     }
 
-//    private void openRenderer() throws IOException {
-//        // Reading a PDF file from the assets directory.
-//        fileDescriptor = getAssets().openFd("compressed.tracemonkey-pldi-09.pdf").getParcelFileDescriptor();
-//
-//        // This is the PdfRenderer we use to render the PDF.
-//        pdfRenderer = new PdfRenderer(fileDescriptor);
-//    }
-
-//    private void showPage(int index) {
-//        if (pdfRenderer.getPageCount() <= index) {
-//            return;
-//        }
-//        // Make sure to close the current page before opening another one.
-//        if (null != currentPage) {
-//            currentPage.close();
-//        }
-//        //open a specific page in PDF file
-//        currentPage = pdfRenderer.openPage(index);
-//        // Important: the destination bitmap must be ARGB (not RGB).
-//        Bitmap bitmap = Bitmap.createBitmap(currentPage.getWidth(), currentPage.getHeight(),
-//                Bitmap.Config.ARGB_8888);
-//        // Here, we render the page onto the Bitmap.
-//        currentPage.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
-//        // showing bitmap to an imageview
-//        mContainer.setImageBitmap(bitmap);
-//    }
-
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void showPage(int index) {
         for (int i=0;i<getPageCount();i++){
@@ -131,23 +93,6 @@ public class ShowPDFActivity extends AppCompatActivity {
             mCurrentPage.close();
         }
         setImageListAdapter();
-//        if (pdfRenderer.getPageCount() <= index) {
-//            return;
-//        }
-//        // Make sure to close the current page before opening another one.
-//        if (null != mCurrentPage) {
-//            mCurrentPage.close();
-//        }
-//        //open a specific page in PDF file
-//        mCurrentPage = pdfRenderer.openPage(index);
-//        // Important: the destination bitmap must be ARGB (not RGB).
-//        Bitmap bitmap = Bitmap.createBitmap( getResources().getDisplayMetrics().densityDpi * mCurrentPage.getWidth() / 72,
-//                getResources().getDisplayMetrics().densityDpi * mCurrentPage.getHeight() / 72,
-//                Bitmap.Config.ARGB_8888);
-//        // Here, we render the page onto the Bitmap.
-//        mCurrentPage.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
-//        // showing bitmap to an imageview
-//        mContainer.setImageBitmap(bitmap);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)

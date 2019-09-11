@@ -14,8 +14,6 @@ import com.example.pdfviewerusingjs.R;
 
 import java.util.ArrayList;
 
-import uk.co.senab.photoview.PhotoView;
-
 public class ImageListRecyclerAdapter extends RecyclerView.Adapter<ImageListRecyclerAdapter.ImageListViewHolder> {
     private Activity activity;
     private ArrayList<Bitmap> imageList;
